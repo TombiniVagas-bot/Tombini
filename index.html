@@ -25,20 +25,20 @@
       position:relative;
     }
 
-    /* CAMINHÃO NO FUNDO (arquivo: o.png) */
+    /* IMAGEM DO CAMINHÃO NO FUNDO */
     body::before{
       content:"";
       position:fixed;
       inset:0;
-      background-image:url("o.png");
+      background-image:url("Caminhao.png"); /* NOME EXATO */
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
-      opacity:0.38;
+      opacity:0.38; /* VISÍVEL E PROFISSIONAL */
       z-index:0;
     }
 
-    /* CAMADA BRANCA PARA LEITURA (mantém padrão clean) */
+    /* CAMADA BRANCA PARA LEITURA */
     body::after{
       content:"";
       position:fixed;
@@ -144,6 +144,7 @@
 </head>
 
 <body>
+
   <div class="card">
     <div class="logo">
       <img src="logotipo.png" alt="Grupo Tombini">
@@ -178,5 +179,6 @@
     }
     document.getElementById("ano").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
