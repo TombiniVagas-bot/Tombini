@@ -25,12 +25,12 @@
       position:relative;
     }
 
-    /* IMAGEM DO CAMINHÃO NO FUNDO */
+    /* CAMINHÃO NO FUNDO (arquivo: o.png) */
     body::before{
       content:"";
       position:fixed;
       inset:0;
-      background-image:url("o.png"); /* NOME CORRETO */
+      background-image:url("o.png");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
@@ -38,7 +38,7 @@
       z-index:0;
     }
 
-    /* CAMADA BRANCA PARA LEITURA */
+    /* CAMADA BRANCA PARA LEITURA (mantém padrão clean) */
     body::after{
       content:"";
       position:fixed;
@@ -64,10 +64,11 @@
       height:72px;
       margin:0 auto 10px;
       border-radius:16px;
-      border:1px solid rgba(37,99,235,0.3);
+      border:1px solid rgba(37,99,235,0.30);
       display:flex;
       align-items:center;
       justify-content:center;
+      background:rgba(37,99,235,0.04);
     }
 
     .logo img{
@@ -90,7 +91,7 @@
       padding:8px 14px;
       border-radius:999px;
       background:rgba(37,99,235,0.08);
-      border:1px solid rgba(37,99,235,0.3);
+      border:1px solid rgba(37,99,235,0.30);
       color:#1e3a8a;
       font-size:13px;
       font-weight:700;
@@ -109,6 +110,7 @@
       color:var(--cinza);
     }
 
+    /* ÚNICO BOTÃO PRINCIPAL */
     .btn{
       width:100%;
       padding:16px;
@@ -142,7 +144,6 @@
 </head>
 
 <body>
-
   <div class="card">
     <div class="logo">
       <img src="logotipo.png" alt="Grupo Tombini">
@@ -177,6 +178,5 @@
     }
     document.getElementById("ano").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
