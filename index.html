@@ -8,7 +8,7 @@
   <style>
     :root{
       --azul:#2563eb;
-      --texto:#ffffff;   /* texto branco por cima da imagem */
+      --texto:#ffffff;
       --muted: rgba(255,255,255,0.88);
     }
 
@@ -25,27 +25,26 @@
       background:#000;
     }
 
-    /* FUNDO COM IMAGEM (PREDOMINANTE) */
+    /* FUNDO COM IMAGEM */
     .bg{
       position:fixed;
       inset:0;
       z-index:0;
-      background-image:url("Caminhao.png?v=12");
+      background-image:url("Caminhao.png?v=13");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
       filter: contrast(1.07) saturate(1.07);
     }
 
-    /* CAMADA MÍNIMA para não “sumir” texto (não é quadrado) */
     .bg::after{
       content:"";
       position:absolute;
       inset:0;
-      background: rgba(0,0,0,0.25); /* leve escurecimento geral */
+      background: rgba(0,0,0,0.25);
     }
 
-    /* CONTEÚDO SEM FUNDO (SEM QUADRADO) */
+    /* CONTEÚDO SEM QUADRADO */
     .card{
       position:relative;
       z-index:1;
@@ -54,29 +53,25 @@
       padding:32px 22px;
       text-align:center;
       margin:0 12px;
-
-      /* remove completamente qualquer “quadrado” */
       background: transparent;
-      border: none;
-      box-shadow: none;
-      border-radius: 0;
+      border:none;
+      box-shadow:none;
     }
 
-    /* Logo sem virar “card” */
+    /* 🔹 LOGO COM FUNDO BRANCO (ALTERAÇÃO SOLICITADA) */
     .logo{
       width:78px;
       height:78px;
       margin:0 auto 10px;
       border-radius:18px;
+
       display:flex;
       align-items:center;
       justify-content:center;
 
-      /* discreto: apenas contorno leve */
-      border:1px solid rgba(255,255,255,0.25);
-      background: rgba(0,0,0,0.18);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
+      background:#ffffff;                 /* FUNDO BRANCO */
+      border:2px solid rgba(37,99,235,0.5); /* BORDA AZUL */
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
     }
 
     .logo img{
@@ -85,7 +80,6 @@
       object-fit:contain;
     }
 
-    /* Texto com sombra para legibilidade */
     h1, h2, p, .badge, .info, footer{
       text-shadow: 0 8px 18px rgba(0,0,0,0.55);
     }
@@ -103,15 +97,12 @@
       margin:14px 0 12px;
       padding:8px 14px;
       border-radius:999px;
-
-      /* NÃO é quadrado, é uma “tag” pequena */
       background: rgba(0,0,0,0.25);
       border: 1px solid rgba(255,255,255,0.18);
       color: rgba(255,255,255,0.92);
       font-size:13px;
       font-weight:800;
       backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
     }
 
     h2{
@@ -127,7 +118,6 @@
       color:var(--muted);
     }
 
-    /* ÚNICO BOTÃO PRINCIPAL */
     .btn{
       width:100%;
       padding:16px;
@@ -139,11 +129,11 @@
       color:#ffffff;
       background:linear-gradient(135deg, var(--azul), #6aa8ff);
       box-shadow:0 18px 30px rgba(0,0,0,0.35);
-      transition:transform 0.15s ease, filter 0.15s ease;
+      transition:transform 0.15s ease;
     }
+
     .btn:hover{
       transform:translateY(-1px);
-      filter:brightness(1.02);
     }
 
     .info{
