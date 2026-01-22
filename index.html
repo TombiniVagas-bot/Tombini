@@ -1,122 +1,613 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Aplicativo Grupo Tombini</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aplicativo oficial do Grupo Tombini Transportes para vagas de emprego.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grupo Tombini Transportes | Vagas para Caminhoneiros(as)</title>
+  <meta name="description" content="Vagas para caminhoneiros(as) no Grupo Tombini Transportes. Candidate-se pelo aplicativo oficial e acompanhe sua candidatura." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Grupo Tombini Transportes | Vagas para Caminhoneiros(as)" />
+  <meta property="og:description" content="Candidate-se pelo aplicativo oficial. Cadastro rápido, processo seguro e acompanhamento da candidatura." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --bg: #0b1220;
+      --bg2:#0f172a;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.085);
+      --border: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.56);
+      --primary: #2563eb;
+      --primary2: #1d4ed8;
+      --radius: 18px;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --max: 1120px;
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f5f7fa;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1100px 700px at 12% 5%, rgba(37,99,235,.22), transparent 60%),
+        radial-gradient(900px 600px at 95% 10%, rgba(255,96,96,.10), transparent 55%),
+        radial-gradient(900px 650px at 50% 100%, rgba(124,158,255,.12), transparent 62%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x: hidden;
     }
 
-    .app {
-      background: #ffffff;
-      max-width: 420px;
-      width: 100%;
-      margin: 20px;
-      padding: 40px 30px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-      text-align: center;
+    a{ color: inherit; text-decoration: none; }
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    .logo {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      background: #f1f5f9;
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(2,6,23,.72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
-
-    .logo img {
-      max-width: 80%;
-      max-height: 80%;
+    .h-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 240px;
+    }
+    .brand img{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 7px;
       object-fit: contain;
     }
-
-    h1 {
-      font-size: 22px;
-      margin: 0 0 10px;
-      font-weight: 700;
+    .brand .t{
+      display:flex;
+      flex-direction:column;
+      line-height: 1.15;
+    }
+    .brand .t strong{
+      font-size: 14.6px;
+      letter-spacing: .2px;
+    }
+    .brand .t span{
+      font-size: 12.5px;
+      color: var(--muted);
     }
 
-    p {
-      font-size: 15px;
-      color: #475569;
-      line-height: 1.6;
-      margin: 0 0 28px;
+    .nav{
+      display:flex;
+      gap: 10px;
+      align-items:center;
     }
 
-    .btn {
-      width: 100%;
-      background: #2563eb;
-      color: #ffffff;
-      border: none;
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 16px;
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: var(--card);
+      color: var(--text);
       font-weight: 700;
+      letter-spacing: .2px;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, filter .15s ease;
+      white-space: nowrap;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: var(--card2);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn:focus{
+      outline: 2px solid rgba(37,99,235,.55);
+      outline-offset: 2px;
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, rgba(37,99,235,.98), rgba(103,170,255,.92));
+      border-color: rgba(255,255,255,.20);
+      color: #071022;
+      box-shadow: 0 14px 30px rgba(37,99,235,.18);
+    }
+    .btn-primary:hover{ filter: brightness(1.02); }
+    .btn-ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.16);
     }
 
-    .btn:hover {
-      background: #1d4ed8;
+    /* Hero */
+    .hero{ padding: 54px 0 18px; }
+    .hero-wrap{
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-wrap::before{
+      content:"";
+      position:absolute;
+      inset:-60%;
+      background: radial-gradient(circle at 22% 30%, rgba(37,99,235,.18), transparent 56%);
+      transform: rotate(16deg);
+      pointer-events:none;
     }
 
-    .info {
-      margin-top: 22px;
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
       font-size: 13px;
-      color: #64748b;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .badge .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 5px rgba(34,197,94,.12);
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 3.2vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+    }
+    .sub{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16.8px;
+      max-width: 70ch;
+      line-height: 1.55;
+    }
+    .actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .trust{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .trust .item{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 74px;
+    }
+    .trust .item strong{
+      display:block;
+      font-size: 13.6px;
+      margin-bottom: 2px;
+    }
+    .trust .item span{
+      display:block;
+      font-size: 12.7px;
+      color: var(--muted2);
+      line-height: 1.45;
+    }
+
+    .side{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .side h2{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .side p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .pills{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .pill b{ color: var(--text); }
+
+    /* Sections */
+    section{ padding: 22px 0; }
+    .title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .title h3{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .title span{
+      color: var(--muted2);
+      font-size: 13.5px;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .card{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .card h4{
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    .card ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .step{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .step strong{ display:block; margin-bottom: 6px; }
+    .step p{ margin: 0; color: var(--muted); line-height: 1.6; }
+
+    /* FAQ */
+    .faq{ display:grid; gap: 10px; }
+    details{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      font-weight: 800;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .chev{
+      width: 28px; height: 28px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition: transform .18s ease;
+      flex: 0 0 auto;
+    }
+    details[open] .chev{ transform: rotate(180deg); }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 40px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .footer{
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .trust{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-
-  <div class="app">
-    <div class="logo">
-      <img src="logotipo.png" alt="Grupo Tombini Transportes">
-    </div>
-
-    <h1>Aplicativo Grupo Tombini</h1>
-
-    <p>
-      Baixe o aplicativo oficial do Grupo Tombini Transportes
-      para se candidatar às vagas de caminhoneiro,
-      cadastrar seu currículo e acompanhar o processo seletivo.
-    </p>
-
-    <button class="btn" onclick="baixarApp()">
-      Baixar aplicativo
-    </button>
-
-    <div class="info">
-      Aplicativo oficial • Download direto • Android
-    </div>
-  </div>
-
   <script>
-    function baixarApp() {
-      window.location.href = "Tombini.apk";
+    // Mantendo sua estrutura:
+    // /index.html
+    // /Tombini.apk
+    // /logotipo.png
+    const APK_FILE = "Tombini.apk";
+
+    function baixarApp(){
+      window.location.href = APK_FILE;
     }
+
+    function irPara(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Acessibilidade: aria-expanded atualizado no FAQ
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("details").forEach(d => {
+        const s = d.querySelector("summary");
+        if(!s) return;
+        const update = () => s.setAttribute("aria-expanded", d.open ? "true" : "false");
+        d.addEventListener("toggle", update);
+        update();
+      });
+
+      const year = document.getElementById("year");
+      if (year) year.textContent = "© " + new Date().getFullYear();
+    });
   </script>
 
+  <header>
+    <div class="container">
+      <div class="h-inner">
+        <a class="brand" href="#topo" aria-label="Ir para o topo">
+          <img src="logotipo.png" alt="Logotipo do Grupo Tombini Transportes" />
+          <div class="t">
+            <strong>Grupo Tombini Transportes</strong>
+            <span>Recrutamento e Seleção</span>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Navegação">
+          <a class="btn btn-ghost" href="#requisitos" onclick="irPara('requisitos'); return false;">Requisitos</a>
+          <a class="btn btn-ghost" href="#como" onclick="irPara('como'); return false;">Como se candidatar</a>
+          <button class="btn btn-primary" type="button" onclick="baixarApp()">Baixar aplicativo</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="topo">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-wrap">
+          <div class="hero-grid">
+            <div>
+              <div class="badge"><span class="dot" aria-hidden="true"></span> Processo oficial • Cadastro rápido • Acompanhamento</div>
+              <h1>Vagas para Caminhoneiros(as)</h1>
+              <p class="sub">
+                Candidate-se pelo aplicativo oficial do Grupo Tombini Transportes.
+                Cadastre seu currículo, gere sua matrícula e acompanhe o andamento da candidatura.
+              </p>
+
+              <div class="actions">
+                <button class="btn btn-primary" type="button" onclick="baixarApp()">Baixar aplicativo</button>
+                <a class="btn" href="#como" onclick="irPara('como'); return false;">Ver como se candidatar</a>
+              </div>
+
+              <div class="trust" aria-label="Destaques do processo">
+                <div class="item">
+                  <strong>Canal oficial</strong>
+                  <span>Processo organizado para candidatura e validação.</span>
+                </div>
+                <div class="item">
+                  <strong>Cadastro objetivo</strong>
+                  <span>Você informa dados essenciais e anexa currículo.</span>
+                </div>
+                <div class="item">
+                  <strong>Acompanhamento</strong>
+                  <span>Status e atualizações diretamente no aplicativo.</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="side" aria-label="Informações rápidas">
+              <h2>Requisitos principais</h2>
+              <p>Tenha em mãos seus dados e currículo para concluir o cadastro com agilidade.</p>
+
+              <div class="pills" role="list" aria-label="Destaques">
+                <span class="pill" role="listitem"><b>CNH</b> C, D ou E</span>
+                <span class="pill" role="listitem"><b>Perfil</b> Responsável</span>
+                <span class="pill" role="listitem"><b>Canal</b> App oficial</span>
+              </div>
+
+              <div style="margin-top:14px;">
+                <button class="btn btn-primary" style="width:100%;" type="button" onclick="baixarApp()">Baixar aplicativo</button>
+                <div style="margin-top:10px; color: var(--muted2); font-size: 12.7px; line-height:1.5;">
+                  Android • Download direto • Arquivo: <span style="color:var(--text); font-weight:800;">Tombini.apk</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="requisitos">
+      <div class="container">
+        <div class="title">
+          <h3>Requisitos</h3>
+          <span>Informações essenciais para se candidatar.</span>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h4>Obrigatórios</h4>
+            <ul>
+              <li>CNH categoria <strong>C, D ou E</strong></li>
+              <li>Compromisso e responsabilidade</li>
+              <li>Disponibilidade para viagens</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Perfil profissional</h4>
+            <ul>
+              <li>Condução segura e foco em normas</li>
+              <li>Zelo com veículo e documentação</li>
+              <li>Boa postura e comunicação</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Diferenciais</h4>
+            <ul>
+              <li>Experiência é um diferencial</li>
+              <li>Organização com rotas e prazos</li>
+              <li>Bom histórico de conduta</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como">
+      <div class="container">
+        <div class="title">
+          <h3>Como se candidatar</h3>
+          <span>Passo a passo simples em 3 etapas.</span>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <strong>1) Baixe o aplicativo</strong>
+            <p>Clique em “Baixar aplicativo” e instale no seu Android.</p>
+          </div>
+          <div class="step">
+            <strong>2) Cadastre seu currículo</strong>
+            <p>Preencha seus dados e gere sua matrícula dentro do aplicativo.</p>
+          </div>
+          <div class="step">
+            <strong>3) Envie ao RH</strong>
+            <p>Envie sua matrícula e currículo para análise e retorno.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" type="button" onclick="baixarApp()">Baixar aplicativo</button>
+          <a class="btn btn-ghost" href="#faq" onclick="irPara('faq'); return false;">Tirar dúvidas</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="title">
+          <h3>Perguntas frequentes</h3>
+          <span>Respostas rápidas e objetivas.</span>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary aria-controls="f1" aria-expanded="false">
+              O aplicativo é oficial?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <p id="f1">Sim. O processo de candidatura é realizado pelo aplicativo utilizado para cadastro e acompanhamento.</p>
+          </details>
+
+          <details>
+            <summary aria-controls="f2" aria-expanded="false">
+              Como funciona a matrícula?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <p id="f2">Após concluir o cadastro, o aplicativo gera uma matrícula/identificador para organização do atendimento e etapas do processo.</p>
+          </details>
+
+          <details>
+            <summary aria-controls="f3" aria-expanded="false">
+              Posso me candidatar sem experiência?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <p id="f3">A experiência é um diferencial, porém o mais importante é atender aos requisitos e manter conduta profissional e responsável.</p>
+          </details>
+
+          <details>
+            <summary aria-controls="f4" aria-expanded="false">
+              O download é para Android?
+              <span class="chev" aria-hidden="true">⌄</span>
+            </summary>
+            <p id="f4">Sim. O arquivo disponível é para instalação em aparelhos Android.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer">
+          <div>Página informativa de recrutamento — <strong>Grupo Tombini Transportes</strong></div>
+          <div id="year"></div>
+        </div>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>
